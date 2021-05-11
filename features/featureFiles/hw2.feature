@@ -3,9 +3,13 @@ Feature: Example feature
 
     Example Feature for testing purposes and for education
 
-    Scenario: HW-2 task
+    Scenario: Header
     Given I am on Onliner page
-    When I see header by class
-    Then I see header by tag
-    Then I see footer by class 
-    Then I see footer by tag
+    When I click on Services link
+    Then I see Orders title
+
+    Scenario: Footer
+    Given I am on Onliner page
+    When I click on Vacancies link
+    Then I see Vacancies title
+

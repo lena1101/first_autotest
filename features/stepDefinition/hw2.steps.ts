@@ -1,31 +1,34 @@
-import { OnlinerPage } from "../pageObjects/onliner.page";
+import { HeaderPage } from "../pageObjects/header.page";
+import { FooterPage } from "../pageObjects/footer.page";
 
 export = function exampleSteps() {
 
-    const onlinerPage = new OnlinerPage;
+    const footerPage = new FooterPage;
+    const headerPage = new HeaderPage;
+
+    this.setDefaultTimeout(600 * 1000);
 
     this.After(async () => {
-        await onlinerPage.clearBrowserData();
+        await headerPage.clearBrowserData();
     });
 
-    this.Given(/^I am on Onliner page$/, () => {
-        onlinerPage.navigateToOnliner();
+    this.Given(/^I am on Onliner page$/, async () => {
+        headerPage.navigateToOnliner();
     });
 
-    this.Then(/^I see header by class$/, async () => {
-        await onlinerPage.checkHeaderByClass();
+    this.When(/^I click on Services link$/, async () => {
+        await headerPage.clickServices();
     });
 
-    this.Then(/^I see header by tag$/, async () => {
-        await onlinerPage.checkHeaderByTag();
+    this.Then(/^I see Orders title$/, async () => {
+        await headerPage.checkTitleByClass();
     });
 
-    this.Then(/^I see footer by class$/, async () => {
-        await onlinerPage.checkFooterByClass();
+    this.When(/^I click on Vacancies link$/, async () => {
+        await footerPage.clickVacancies();
     });
 
-    this.Then(/^I see footer by tag$/, async () => {
-        await onlinerPage.checkFooterByTag();
+    this.Then(/^I see Vacancies title$/, async () => {
+        await footerPage.checkTitleByTag();
     });
-
 }
